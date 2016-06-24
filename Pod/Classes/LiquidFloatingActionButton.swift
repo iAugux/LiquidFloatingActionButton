@@ -240,7 +240,7 @@ public class LiquidFloatingActionButton : UIView {
         plusLayer.frame = circleLayer.bounds
     }
 
-    func didTapped() {
+    public func didTapped() {
         if isClosed {
             open()
         } else {
