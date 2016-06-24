@@ -18,11 +18,15 @@ public class LiquittableCircle : UIView {
             setup()
         }
     }
-    var color: UIColor = UIColor.redColor() {
+    // Set to public for setting indiviudal colors
+    public var color: UIColor? = nil {
         didSet {
             setup()
         }
     }
+    
+    // Store the default color
+    public var defaultColor: UIColor = UIColor.blue()
     
     override public var center: CGPoint {
         didSet {
@@ -39,18 +43,18 @@ public class LiquittableCircle : UIView {
         super.init(frame: frame)
         setup()
         self.layer.addSublayer(circleLayer)
-        self.opaque = false
+        self.isOpaque = false
     }
 
     init() {
         self.radius = 0
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         setup()
         self.layer.addSublayer(circleLayer)
-        self.opaque = false
+        self.isOpaque = false
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -60,22 +64,22 @@ public class LiquittableCircle : UIView {
     }
 
     func drawCircle() {
-        let bezierPath = UIBezierPath(ovalInRect: CGRect(origin: CGPointZero, size: CGSize(width: radius * 2, height: radius * 2)))
-        draw(bezierPath)
+        let bezierPath = UIBezierPath(ovalIn: CGRect(origin: CGPoint.zero, size: CGSize(width: radius * 2, height: radius * 2)))
+        _ = draw(bezierPath)
     }
 
-    func draw(path: UIBezierPath) -> CAShapeLayer {
+    func draw(_ path: UIBezierPath) -> CAShapeLayer {
         circleLayer.lineWidth = 3.0
-        circleLayer.fillColor = self.color.CGColor
-        circleLayer.path = path.CGPath
+        circleLayer.fillColor = self.color?.cgColor ?? self.defaultColor.cgColor
+        circleLayer.path = path.cgPath
         return circleLayer
     }
     
-    func circlePoint(rad: CGFloat) -> CGPoint {
+    func circlePoint(_ rad: CGFloat) -> CGPoint {
         return CGMath.circlePoint(center, radius: radius, rad: rad)
     }
     
-    public override func drawRect(rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         drawCircle()
     }
 
