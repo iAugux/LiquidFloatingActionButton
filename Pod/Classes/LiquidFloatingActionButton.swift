@@ -127,8 +127,11 @@ public class LiquidFloatingActionButton : UIView {
     }
     
     // open all cells
-    public func open() {
+    public func open(_ began: Closure? = nil, ended: Closure? = nil) {
         
+        guard isClosed else { return }
+        
+        began?()
         delegate?.liquidFloatingActionButton?(willOpen: self)
         delegate?.liquidFloatingActionButton?(willToggle: self, isOpening: isOpening)
         
@@ -143,6 +146,7 @@ public class LiquidFloatingActionButton : UIView {
         
         self.baseView.open(cells, { [weak self] in
             if let strongSelf = self {
+                ended?()
                 strongSelf.delegate?.liquidFloatingActionButton?(didOpen: strongSelf)
                 strongSelf.delegate?.liquidFloatingActionButton?(didToggle: strongSelf, isClosed: strongSelf.isClosed)
             }
@@ -152,8 +156,11 @@ public class LiquidFloatingActionButton : UIView {
     }
     
     // close all cells
-    public func close() {
+    public func close(_ began: Closure? = nil, ended: Closure? = nil) {
         
+        guard !isClosed else { return }
+        
+        began?()
         delegate?.liquidFloatingActionButton?(willClose: self)
         delegate?.liquidFloatingActionButton?(willToggle: self, isOpening: isOpening)
         
@@ -163,6 +170,7 @@ public class LiquidFloatingActionButton : UIView {
         
         self.baseView.close(cellArray(), { [weak self] in
             if let strongSelf = self {
+                ended?()
                 strongSelf.delegate?.liquidFloatingActionButton?(didClose: strongSelf)
                 strongSelf.delegate?.liquidFloatingActionButton?(didToggle: strongSelf, isClosed: strongSelf.isClosed)
             }
