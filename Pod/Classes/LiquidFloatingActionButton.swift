@@ -43,7 +43,21 @@ public enum LiquidFloatingActionButtonAnimateStyle : Int {
 public class LiquidFloatingActionButton : UIView {
     
     private let internalRadiusRatio: CGFloat = 20.0 / 56.0
-    public var cellRadiusRatio: CGFloat      = 0.38
+    
+    public var cellRadiusRatio: CGFloat = 0.38
+    
+    public var openingDelay: CGFloat = 0.1 {
+        didSet {
+            baseView.openingDelay = openingDelay
+        }
+    }
+    
+    public var closingDelay: CGFloat = 0.0 {
+        didSet {
+            baseView.closingDelay = closingDelay
+        }
+    }
+    
     public var animateStyle: LiquidFloatingActionButtonAnimateStyle = .up {
         didSet {
             baseView.animateStyle = animateStyle
@@ -310,6 +324,10 @@ class CircleLiquidBaseView : ActionBarBaseView {
     let openDuration: CGFloat  = OPEN_DURATION
     let closeDuration: CGFloat = CLOSE_DURATION
     let viscosity: CGFloat     = 0.65
+    
+    var openingDelay: CGFloat  = 0.1
+    var closingDelay: CGFloat  = 0
+    
     var animateStyle: LiquidFloatingActionButtonAnimateStyle = .up
     
     var baseLiquid: LiquittableCircle?
@@ -421,7 +439,7 @@ class CircleLiquidBaseView : ActionBarBaseView {
     }
     
     func updateOpen() {
-        update(0.1, duration: openDuration) { cell, i, ratio in
+        update(openingDelay, duration: openDuration) { cell, i, ratio in
             let posRatio = ratio > CGFloat(i) / CGFloat(self.openingCells.count) ? ratio : 0
             let distance = (cell.frame.height * 0.5 + CGFloat(i + 1) * cell.frame.height * 1.5) * posRatio
             cell.center = self.center.plus(self.differencePoint(distance))
@@ -430,7 +448,7 @@ class CircleLiquidBaseView : ActionBarBaseView {
     }
     
     func updateClose() {
-        update(0, duration: closeDuration) { cell, i, ratio in
+        update(closingDelay, duration: closeDuration) { cell, i, ratio in
             let distance = (cell.frame.height * 0.5 + CGFloat(i + 1) * cell.frame.height * 1.5) * (1 - ratio)
             cell.center = self.center.plus(self.differencePoint(distance))
             cell.update(ratio, open: false)
