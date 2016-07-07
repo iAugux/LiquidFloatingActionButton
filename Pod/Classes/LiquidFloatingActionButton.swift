@@ -434,7 +434,7 @@ class CircleLiquidBaseView : ActionBarBaseView {
             engine?.color = cell.color ?? cell.defaultColor
             _ = engine?.push(prev, other: cell)
         }
-        engine?.draw(baseLiquid!)
+//        engine?.draw(baseLiquid!)
         bigEngine?.draw(baseLiquid!)
     }
     
