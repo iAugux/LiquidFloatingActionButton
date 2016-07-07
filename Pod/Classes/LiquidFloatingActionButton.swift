@@ -367,6 +367,7 @@ class CircleLiquidBaseView : ActionBarBaseView {
             cell.layer.removeAllAnimations()
             cell.layer.eraseShadow()
             openingCells.append(cell)
+            cell.alpha = 1
         }
         completion?()
     }
@@ -452,6 +453,9 @@ class CircleLiquidBaseView : ActionBarBaseView {
             let distance = (cell.frame.height * 0.5 + CGFloat(i + 1) * cell.frame.height * 1.5) * (1 - ratio)
             cell.center = self.center.plus(self.differencePoint(distance))
             cell.update(ratio, open: false)
+            UIView.animate(withDuration: 0.2, animations: {
+                cell.alpha = 0.1
+            })
         }
     }
     
