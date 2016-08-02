@@ -205,7 +205,7 @@ public class LiquidFloatingActionButton : UIView {
         // draw plus shape
         let plusLayer = CAShapeLayer()
         plusLayer.lineCap = kCALineCapRound
-        plusLayer.strokeColor = UIColor.white().cgColor
+        plusLayer.strokeColor = UIColor.white.cgColor
         plusLayer.lineWidth = 3.0
         
         let path = UIBezierPath()
@@ -267,7 +267,7 @@ public class LiquidFloatingActionButton : UIView {
     
     // MARK: private methods
     private func setup() {
-        self.backgroundColor = UIColor.clear()
+        self.backgroundColor = UIColor.clear
         self.clipsToBounds = false
         
         baseView.setup(self)
@@ -544,7 +544,7 @@ public class LiquidFloatingCell : LiquittableCircle {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(_ image: UIImage?, tintColor: UIColor = UIColor.white()) {
+    func setup(_ image: UIImage?, tintColor: UIColor = UIColor.white) {
         imageView.image = image?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = tintColor
         setupView(imageView)
