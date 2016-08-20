@@ -11,42 +11,25 @@ import UIKit
 
 extension UIColor {
     
-    var red: CGFloat {
-        get {
-            let components = self.cgColor.components
-            return components![0]
-        }
-    }
+    var components: UnsafePointer<CGFloat> { get { return cgColor.__unsafeComponents! } }
     
-    var green: CGFloat {
-        get {
-            let components = self.cgColor.components
-            return components![1]
-        }
-    }
+    var cRed: CGFloat { get { return components[0] } }
     
-    var blue: CGFloat {
-        get {
-            let components = self.cgColor.components
-            return components![2]
-        }
-    }
+    var cGreen: CGFloat { get { return components[1] } }
     
-    var alpha: CGFloat {
-        get {
-            return self.cgColor.alpha
-        }
-    }
+    var cBlue: CGFloat { get { return components[2] } }
 
-    func alpha(_ alpha: CGFloat) -> UIColor {
-        return UIColor(red: self.red, green: self.green, blue: self.blue, alpha: alpha)
+    var alpha: CGFloat { get { return cgColor.alpha } }
+
+    func _alpha(_ alpha: CGFloat) -> UIColor {
+        return UIColor(red: self.cRed, green: self.cGreen, blue: self.cBlue, alpha: alpha)
     }
     
     func white(_ scale: CGFloat) -> UIColor {
         return UIColor(
-            red: self.red + (1.0 - self.red) * scale,
-            green: self.green + (1.0 - self.green) * scale,
-            blue: self.blue + (1.0 - self.blue) * scale,
+            red: self.cRed + (1.0 - self.cRed) * scale,
+            green: self.cGreen + (1.0 - self.cGreen) * scale,
+            blue: self.cBlue + (1.0 - self.cBlue) * scale,
             alpha: 1.0
         )
     }

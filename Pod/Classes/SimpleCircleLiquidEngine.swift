@@ -15,10 +15,10 @@ import UIKit
 class SimpleCircleLiquidEngine {
 
     let radiusThresh: CGFloat
-    private var layer: CALayer = CAShapeLayer()
+    fileprivate var layer: CALayer = CAShapeLayer()
 
     var viscosity: CGFloat = 0.65
-    var color = UIColor.blue()
+    var color = UIColor.blue
     var angleOpen: CGFloat = 1.0
     
     let ConnectThresh: CGFloat = 0.3
@@ -59,7 +59,7 @@ class SimpleCircleLiquidEngine {
         return shape
     }
     
-    private func circleConnectedPoint(_ circle: LiquittableCircle, other: LiquittableCircle, angle: CGFloat) -> (CGPoint, CGPoint) {
+    fileprivate func circleConnectedPoint(_ circle: LiquittableCircle, other: LiquittableCircle, angle: CGFloat) -> (CGPoint, CGPoint) {
         let vec = other.center.minus(circle.center)
         let radian = atan2(vec.y, vec.x)
         let p1 = circle.circlePoint(radian + angle)
@@ -67,7 +67,7 @@ class SimpleCircleLiquidEngine {
         return (p1, p2)
     }
     
-    private func circleConnectedPoint(_ circle: LiquittableCircle, other: LiquittableCircle) -> (CGPoint, CGPoint) {
+    fileprivate func circleConnectedPoint(_ circle: LiquittableCircle, other: LiquittableCircle) -> (CGPoint, CGPoint) {
         var ratio = circleRatio(circle, other: other)
         ratio = (ratio + ConnectThresh) / (1.0 + ConnectThresh)
         let angle = CGFloat(M_PI_2) * angleOpen * ratio
@@ -93,7 +93,7 @@ class SimpleCircleLiquidEngine {
         }
     }
 
-    private func normalPath(_ circle: LiquittableCircle, other: LiquittableCircle) -> UIBezierPath? {
+    fileprivate func normalPath(_ circle: LiquittableCircle, other: LiquittableCircle) -> UIBezierPath? {
         let (p1, p2) = circleConnectedPoint(circle, other: other)
         let (p3, p4) = circleConnectedPoint(other, other: circle)
         if let crossed = CGPoint.intersection(p1, to: p3, from2: p2, to2: p4) {
@@ -113,7 +113,7 @@ class SimpleCircleLiquidEngine {
         return nil
     }
 
-    private func splitPath(_ circle: LiquittableCircle, other: LiquittableCircle, ratio: CGFloat) -> [UIBezierPath] {
+    fileprivate func splitPath(_ circle: LiquittableCircle, other: LiquittableCircle, ratio: CGFloat) -> [UIBezierPath] {
         let (p1, p2) = circleConnectedPoint(circle, other: other, angle: CGMath.degToRad(60))
         let (p3, p4) = circleConnectedPoint(other, other: circle, angle: CGMath.degToRad(60))
 
@@ -137,7 +137,7 @@ class SimpleCircleLiquidEngine {
         return []
     }
 
-    private func circleRatio(_ circle: LiquittableCircle, other: LiquittableCircle) -> CGFloat {
+    fileprivate func circleRatio(_ circle: LiquittableCircle, other: LiquittableCircle) -> CGFloat {
         let distance = other.center.minus(circle.center).length()
         let ratio = 1.0 - (distance - radiusThresh) / (circle.radius + other.radius + radiusThresh)
         return min(max(ratio, 0.0), 1.0)

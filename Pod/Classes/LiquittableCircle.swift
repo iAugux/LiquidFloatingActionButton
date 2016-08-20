@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class LiquittableCircle : UIView {
+open class LiquittableCircle : UIView {
 
     var points: [CGPoint] = []
     var radius: CGFloat {
@@ -19,16 +19,16 @@ public class LiquittableCircle : UIView {
         }
     }
     // Set to public for setting indiviudal colors
-    public var color: UIColor? = nil {
+    open var color: UIColor? = nil {
         didSet {
             setup()
         }
     }
     
     // Store the default color
-    public var defaultColor: UIColor = UIColor.blue()
+    open var defaultColor: UIColor = UIColor.blue
     
-    override public var center: CGPoint {
+    override open var center: CGPoint {
         didSet {
             self.frame = CGRect(x: center.x - radius, y: center.y - radius, width: 2 * radius, height: 2 * radius)
             setup()
@@ -58,7 +58,7 @@ public class LiquittableCircle : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setup() {
+    fileprivate func setup() {
         self.frame = CGRect(x: center.x - radius, y: center.y - radius, width: 2 * radius, height: 2 * radius)
         drawCircle()
     }
@@ -79,7 +79,7 @@ public class LiquittableCircle : UIView {
         return CGMath.circlePoint(center, radius: radius, rad: rad)
     }
     
-    public override func draw(_ rect: CGRect) {
+    open override func draw(_ rect: CGRect) {
         drawCircle()
     }
 

@@ -381,6 +381,7 @@
 					43800D6302E8EC6CA16A563D575B6A60 = {
 						DevelopmentTeam = J4Z2NCTR3S;
 						DevelopmentTeamName = "Lei Wang";
+						LastSwiftMigration = 0800;
 					};
 					4B6EA48CB3BF157DFBE8AD0B5390FD54 = {
 						DevelopmentTeam = J4Z2NCTR3S;
@@ -390,6 +391,10 @@
 					549EC8F1186C4136AD3D4CBFF076E300 = {
 						DevelopmentTeam = J4Z2NCTR3S;
 						DevelopmentTeamName = "Lei Wang";
+						LastSwiftMigration = 0800;
+					};
+					5EB2706E8DDAC8712C6B9B96871D4022 = {
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -566,6 +571,7 @@
 				PRODUCT_NAME = LiquidFloatingActionButton;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -593,6 +599,7 @@
 				PRODUCT_NAME = Pods_LiquidFloatingActionButton_Example;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -607,6 +614,7 @@
 				PRODUCT_NAME = LiquidFloatingActionButton;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -663,6 +671,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -692,6 +701,7 @@
 				PRODUCT_NAME = Pods_LiquidFloatingActionButton_Tests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -761,6 +771,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
